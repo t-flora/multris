@@ -16,5 +16,5 @@ const colors = {
 }
 
 export default function Cell({ type }: Props) {
-    return <div className={`w-5 h-5 ${colors[type]}`} />;
+    return <div className={`w-8 h-8 ${colors[type]} border border-gray-300`} />;
 }

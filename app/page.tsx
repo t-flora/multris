@@ -6,8 +6,8 @@ export default function Home() {
     const emptyBoard = getEmptyBoard();
 
     return (
-      <>
+      <div className='flex justify-center mt-8'>
         <GameBoard currentBoard={emptyBoard} />
-      </>
+      </div>
     )
 }
