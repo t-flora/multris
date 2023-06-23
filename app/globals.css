@@ -76,7 +76,7 @@ button {
 }
 
 .cell.Empty {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(100, 100, 100);
 }
 
 .cell.I {

@@ -1,17 +1,18 @@
 import Cell from './Cell';
 import { BoardShape } from "../lib/types";
 
-interface Props {
-    currentBoard: BoardShape;
+interface BoardProps {
+    currentBoard: BoardShape,
 }
 
-export default function Board({ currentBoard }: Props) {
+export default function Board({ currentBoard }: BoardProps ) {
+
     return (
-        <div className="board">
+        <div className="flex flex-col">
             {currentBoard.map((row, rowIdx) => (
-                <div className="row" key={`${rowIdx}`}>
-                    {row.map((cell, colIdx) => (
-                        <Cell key={`${rowIdx}-${colIdx}`} type={cell} />
+                <div className="flex" key={`${rowIdx}`}>
+                    {row.map((cellType, colIdx) => (
+                        <Cell key={`${rowIdx}-${colIdx}`} type={cellType} />
                     ))}
                 </div>
             ))}

@@ -7,12 +7,7 @@ export enum Block { // This will be changed when we generate multiminos with dif
     L = "L",
     O = "O",
     Z = "Z",
+    EMPTY = "Empty",
 }
 
-export enum EmptyCell {
-    Empty = "Empty",
-}
-
-export type CellOptions = Block | EmptyCell;
-
-export type BoardShape = CellOptions[][]; // Matrix of cells, either filled or empty
+export type BoardShape = Block[][]; // Matrix of cells, either filled or empty

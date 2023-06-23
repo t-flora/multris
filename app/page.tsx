@@ -1,9 +1,13 @@
-import Image from 'next/image'
+import GameBoard from '../components/GameBoard';
+import { getEmptyBoard } from '@/lib/boardFunctions';
 
 export default function Home() {
-  return (
-    <>
-      
-    </>
-  )
+
+    const emptyBoard = getEmptyBoard();
+
+    return (
+      <>
+        <GameBoard currentBoard={emptyBoard} />
+      </>
+    )
 }
