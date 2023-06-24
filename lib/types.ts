@@ -11,6 +11,13 @@ export enum Block { // This will be changed when we generate multiminos with dif
 }
 
 export type BoardShape = Block[][]; // Matrix of cells, either filled or empty
+export type BoardState = {
+    board: BoardShape,
+    activeRowIdx: number,
+    activeColIdx: number,
+    activeBlock: Block,
+    activeShape: boolean[][],
+}
 
 export const SHAPES = {
     I : [
@@ -57,7 +64,7 @@ enum ActionType {
     DROP,
 }
 
-type Action = {
+export type Action = {
     type: ActionType,
     newBoard?: BoardShape,
     newBlock?: Block,
