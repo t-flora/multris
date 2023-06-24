@@ -49,3 +49,19 @@ export const SHAPES = {
         [0, 1, 1],
     ],
 }
+
+enum ActionType {
+    START,
+    MOVE,
+    COMMIT,
+    DROP,
+}
+
+type Action = {
+    type: ActionType,
+    newBoard?: BoardShape,
+    newBlock?: Block,
+    isPressingRight?: boolean,
+    isPressingLeft?: boolean,
+    isRotating?: boolean,
+}
