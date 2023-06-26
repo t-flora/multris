@@ -1,3 +1,4 @@
+'use client';
 import Cell from './Cell';
 import { BoardShape } from "../lib/types";
 

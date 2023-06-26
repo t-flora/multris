@@ -19,7 +19,15 @@ export type BoardState = {
     activeShape: boolean[][],
 }
 
-export const SHAPES = {
+type BlockShape = {
+    [K in Block]: number[][];
+}
+
+type BoolBlockShape = {
+    [K in Block]: boolean[][];
+}
+
+export const SHAPES: BlockShape = {
     I : [
         [0, 0, 1, 0],
         [0, 0, 1, 0],
@@ -55,17 +63,25 @@ export const SHAPES = {
         [1, 1, 0],
         [0, 1, 1],
     ],
+    Empty : [[0]],
 }
 
-enum ActionType {
+// Convert numbers to booleans
+export const BOOL_SHAPES: BoolBlockShape = {} as BoolBlockShape;
+Object.keys(SHAPES).forEach((shapeKey) => {
+    const shape = shapeKey as Block;
+    BOOL_SHAPES[shape] = SHAPES[shape].map(row => row.map(value => Boolean(value)));
+});
+
+export enum Actions {
     START,
     MOVE,
     COMMIT,
     DROP,
 }
 
-export type Action = {
-    type: ActionType,
+export type ActionType = {
+    type: Actions,
     newBoard?: BoardShape,
     newBlock?: Block,
     isPressingRight?: boolean,
