@@ -1,8 +1,8 @@
-import { getEmptyBoard } from '@/lib/boardFunctions';
+import { getEmptyBoard, getRandomBlock } from '@/lib/boardFunctions';
 import { Actions, ActionType, Block, BoardShape, BoardState, BOOL_SHAPES } from '../lib/types';
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState, Dispatch } from 'react';
 
-export function useBoard() { // Update and fetch board state
+export function useBoard(): [BoardState, Dispatch<ActionType>] { // Update and fetch board state
     const firstBlock = getRandomBlock();
     const firstShape = BOOL_SHAPES[firstBlock];
     const [boardState, dispatchBoardState] = useReducer(
@@ -23,11 +23,6 @@ export function useBoard() { // Update and fetch board state
     );
 
     return [boardState, dispatchBoardState]; // return new state
-}
-
-export function getRandomBlock(): Block {
-    const blockVals = Object.values(Block);
-    return blockVals[Math.floor(Math.random()*blockVals.length)] as Block;
 }
 
 function boardReducer(state: BoardState, action: ActionType): BoardState {
@@ -69,7 +64,7 @@ export function useInterval(callback: ()=>void, delay: number | null): void {
 
         const intervalId = setInterval(() => callbackRef.current(), delay);
         return () => clearInterval(intervalId);
-    }, [delay])
+    }, [delay]);
 }
 
 enum TickSpeed { // tick speed will depend on user input, so we need to update the state of the speed according to key presses
@@ -109,7 +104,9 @@ export function useMultris() {
             .filter((row) => row.some((isSet) => isSet)) // get `true` values from the shape matrix and discard false values
             .forEach((row: boolean[], rowIdx: number) => { // iterate over the shape matrix and set the appropriate board squares to the active block
                 row.forEach((isSet: boolean, colIdx: number) => {
-                    renderedBoard[activeRowIdx + rowIdx][activeColIdx + colIdx] = activeBlock;
+                    if (isSet) {
+                        renderedBoard[activeRowIdx + rowIdx][activeColIdx + colIdx] = activeBlock;
+                    }
                 })
             })
     }
