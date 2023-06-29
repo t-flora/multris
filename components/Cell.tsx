@@ -1,6 +1,7 @@
 import { Block } from '../lib/types';
+import '../app/globals.css';
 
-interface Props {
+interface CellProps {
     type: Block;
 }
 
@@ -15,6 +16,6 @@ const colors = {
     [Block.O]: 'bg-yellow',
 }
 
-export default function Cell({ type }: Props) {
-    return <div className={`w-8 h-8 ${colors[type]} border border-gray-300`} />;
+export default function Cell({ type }: CellProps) {
+    return <div className={`cell ${type}`} />;
 }
